@@ -1,84 +1,75 @@
-#Popcorn time [![Dependency Status](https://david-dm.org/popcorn-time/popcorn-app.png?theme=shields.io)](https://david-dm.org/popcorn-time/popcorn-time)
+# [Popcorn Time](https://git.popcorntime.io/stash/projects/PT/repos/popcorn-app) [![Dependency Status](https://david-dm.org/popcorn-official/popcorn-app.svg)](https://david-dm.org/popcorn-official/popcorn-app) [![Build Status](https://travis-ci.org/popcorn-official/popcorn-app.svg?branch=dev-0.3)](https://travis-ci.org/popcorn-official/popcorn-app)
 
-## Idea
+Allow any computer user to watch movies easily streaming from torrents, without any particular knowledge.
 
-To allow any computer user to watch movies easily streaming from torrents, without any particular knowledge.
+![Popcorn Time](http://i.imgur.com/MdZR313.gif)
 
-![Demo Screenshot](http://getpopcornti.me/images/how-ui.png)
+Visit the project's website at <http://popcorntime.io>.
 
-### Status
+***
 
-Under development (RC1) for Mac OSX - Windows - Linux.
+## Getting Involved
+
+Want to report a bug, request a feature, contribute or translate Popcorn Time? Check out our in-depth guide to [Contributing to Popcorn Time](https://git.popcorntime.io/stash/projects/PT/repos/popcorn-app/browse/CONTRIBUTING.md). We need all the help we can get! You can also join in with our [community](https://git.popcorntime.io/stash/projects/PT/repos/popcorn-app/browse/README.md#community) to keep up-to-date and meet other Popcorn Timers.
+
+## Getting Started
+
+If you're comfortable getting up and running from a `git clone`, this method is for you.
+
+If you clone the GitHub repository, you will need to build a number of assets using grunt.
+
+The [stable](https://git.popcorntime.io/stash/projects/PT/repos/popcorn-app/browse?at=refs/heads/master) branch which contains the latest release.
+
+#### Quickstart:
+
+1. `npm install -g grunt-cli bower`
+1. `npm install`
+1. `grunt build`
+1. `grunt start`
+
+Optionally, you may simply run `./make_popcorn.sh` if you are on a linux or mac based operating system.
+
+Full instructions & troubleshooting tips can be found in the [Contributing Guide](https://git.popcorntime.io/stash/projects/PT/repos/popcorn-app/browse/CONTRIBUTING.md)
+
+<a name="community"></a>
+## Community
+
+Keep track of Popcorn Time development and community activity.
+
+* Follow Popcorn Time on [Twitter](https://twitter.com/popcorntimetv), [Facebook](https://www.facebook.com/PopcornTimeTv) and [Google+](https://plus.google.com/+Getpopcorntime).
+* Read and subscribe to the [The Official Popcorn Time Blog](http://blog.popcorntime.io).
+* Join in discussions on the [Popcorn Time Forum](http://discuss.popcorntime.io)
+* Connect with us on IRC at `#popcorntime` on freenode ([web access](http://webchat.freenode.net/?channels=popcorntime))
+
+
+## Versioning
+
+For transparency and insight into our release cycle, and for striving to maintain backward compatibility, Popcorn Time will be maintained according to the [Semantic Versioning](http://semver.org/) guidelines as much as possible.
+
+Releases will be numbered with the following format:
+
+`<major>.<minor>.<patch>-<build>`
+
+Constructed with the following guidelines:
+
+* A new *major* release indicates a large change where backwards compatibility is broken.
+* A new *minor* release indicates a normal change that maintains backwards compatibility.
+* A new *patch* release indicates a bugfix or small change which does not affect compatibility.
+* A new *build* release indicates this is a pre-release of the version.
+
+
+***
+
+If you distribute a copy or make a fork of the project, you have to credit this project as source.
+	
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
  
-### APIs
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License along with this program.  If not, see http://www.gnu.org/licenses/ .
 
-**Currently used:**
-- ~~[RottenTomatoes](http://developer.rottentomatoes.com) for movies metadata.~~
-- ~~[PirateBay](http://thepiratebay.se/browse/207/0/7/0) Recent popular movies list.~~
-- [YIFY](http://yts.re/api) movie torrents API.
-- [OpenSubtitles](http://trac.opensubtitles.org/projects/opensubtitles/wiki/XMLRPC) for subtitles
-- [TheMovieDB](http://www.themoviedb.org/) for movies metadata.
+***
 
-**In discussion:**
-- [SubtitleSeeker](http://www.api.subtitleseeker.com/About/Api-Search/) for subtitles.
-
-
-## Building
-
-### Dependencies
-
-You will need nodejs and grunt:
-
-    $ npm install -g grunt-cli
-
-### Select your OS
-
-Enable your Operating System in `Gruntfile.js` and disable all the others:
-
-    …
-    nodewebkit: {
-      options: {
-        …
-        mac: false,
-        win: false,
-        linux32: false,
-        linux64: true
-      },
-    …
-
-### Build
-
-Install the node modules:
-
-    $ npm install
-
-Built with:
-
-    $ grunt nodewkbuild
-
-
-## Any problem?
-
-### Regarding superagent dependency
-Due to [wrong browser verification](https://github.com/visionmedia/superagent/issues/95) on a dependency, this hard fix must be applied.
-Replace `node_modules/moviedb/node_modules/superagent/index.js` contents with:
-```javascript
-// if (typeof window != 'undefined') {
-//   module.exports = require('./lib/superagent');
-// } else if (process.env.SUPERAGENT_COV) {
-//   module.exports = require('./lib-cov/node');
-// } else {
-  module.exports = require('./lib/node');
-// }
-```
-
-### Regarding Video, MP4 H264 Playback
-- Info: https://github.com/rogerwang/node-webkit/wiki/Support-mp3-and-h264-in-video-and-audio-tag
-- Needed to build a custom build of node-webkit that adds h264 support (or you can download ready-to-go builds from https://file.ac/s4Lt3Vo6rls/)
-- Alternatively, we can replace a .so and .dll file from the correspondent Chrome build to node-webkit and node-webkit.exe
-
-
-## Development
-- Run `compass watch` in Terminal for CSS compiling and listen to future changes.
-- [How to build with SublimeText](https://github.com/rogerwang/node-webkit/wiki/Debugging-with-Sublime-Text-2-and-3)
-- Currently Gaze to watch all files and reload the app is disabled due to memory leaks and unstability.
+If you want to contact us : [hello@popcorntime.io](mailto:hello@popcorntime.io)
+ 
+Copyright (c) 2014 Popcorn Time Foundation - Released under the [GLV v3 license](https://git.popcorntime.io/stash/projects/PT/repos/popcorn-app/browse/LICENSE.txt).
